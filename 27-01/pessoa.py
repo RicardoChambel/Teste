@@ -5,6 +5,7 @@ class Pessoa:
         self.altura = altura
         self.peso = peso # peso em gramas
         self.energia = 100
+        self.acordado = True
     
     # por cada coisa que comer engorda 100g
     def comer(self, alimento: list[str]):
@@ -28,11 +29,15 @@ class Pessoa:
         self.altura += cm
         
     def dormir(self):
+        if self.acordado:
+            self.acordado = False
+            return "A dormir..."
+        return "Ja esta a dormir"
         self.energia = 100
     
     # crie um metodo para acordar, garanta que so acorda se estiver a dormir
     def acordar(self):
-        if self.energia == 0:
-            self.energia = 50
-            return "Acordou!"
-        return "Ja esta acordado."
+        if not self.acordado:
+            self.acordado = True
+            return "Acordou"
+        return "Ja esta acordado"
